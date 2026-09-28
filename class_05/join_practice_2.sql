@@ -11,5 +11,5 @@ SELECT e.emp_no, e.first_name, e.last_name, e.hire_date, m.to_date
 FROM employees_copy3 e
 LEFT JOIN dept_manager_copy m
 ON e.emp_no = m.emp_no
-WHERE m.to_date - e.hire_date <= 50000; // 5년
+WHERE m.to_date - e.hire_date <= 50000;
 

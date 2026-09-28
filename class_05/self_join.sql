@@ -48,8 +48,8 @@ LEFT JOIN employees mm ON m.manager_id = mm.employee_id;
 -- -------------------------------
 SELECT e.employee_name AS 직원,
        e.salary        AS 내연봉,
-       h.employee_name AS 더높은사람,
-       h.salary        AS 그사람연봉
+       h.employee_name AS 상급자,
+       h.salary        AS 상급자연봉
 FROM employees e
 JOIN employees h
   ON e.department = h.department
@@ -94,7 +94,7 @@ ORDER BY e.employee_name;
 
 -- -------------------------------
 SELECT e.employee_name AS 직원,
-       h.employee_name AS 더높은사람
+       h.employee_name AS 상급자
 FROM employees e
 LEFT JOIN employees h
   ON e.department = h.department
@@ -103,7 +103,7 @@ ORDER BY e.employee_name;
 
 -- -------------------------------
 SELECT e.employee_name AS 직원,
-       h.employee_name AS 더높은사람
+       h.employee_name AS 상급자
 FROM employees e
 LEFT JOIN employees h
   ON e.department = h.department

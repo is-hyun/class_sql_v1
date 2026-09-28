@@ -1,0 +1,40 @@
+DROP DATABASE IF EXISTS shopping;
+CREATE DATABASE shopping;
+USE shopping;
+
+CREATE TABLE member(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    userId VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    phone VARCHAR(13),
+    address VARCHAR(255)
+);
+
+CREATE TABLE product(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    productCode VARCHAR(10) NOT NULL UNIQUE,
+    productName VARCHAR(100) NOT NULL,
+    price INT UNSIGNED NOT NULL,
+    stock INT UNSIGNED DEFAULT 0
+);
+
+CREATE TABLE orders(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    memberId INT,
+    totalPrice INT UNSIGNED NOT NULL, 
+    delivery VARCHAR(20) DEFAULT '주문 접수 완료',
+    orderDate DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (memberId) REFERENCES member(id)
+);
+
+CREATE TABLE order_detail(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    orderId INT NOT NULL,
+    productId INT,
+    count INT UNSIGNED NOT NULL,
+    price INT UNSIGNED NOT NULL,
+    FOREIGN KEY (orderId) REFERENCES orders(id) ON DELETE CASCADE,
+    FOREIGN KEY (productId) REFERENCES product(id)
+);
+
